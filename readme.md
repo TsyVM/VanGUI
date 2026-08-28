@@ -1,5 +1,3 @@
-# VanGUI
-
 <div align="center">
 <img src="vangui-logo.png" width="600" alt="VanGUI"/>
     
