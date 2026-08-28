@@ -1,7 +1,8 @@
 # VanGUI
 
 <div align="center">
-
+<img src="vangui-logo.png" width="600" alt="VanGUI"/>
+    
 <p><em>Bloat-free Immediate Mode GUI for C++23</em></p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-D2B48C?style=for-the-badge&labelColor=1C1008)](LICENSE.txt)
