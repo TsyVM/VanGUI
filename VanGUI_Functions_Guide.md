@@ -1155,9 +1155,3 @@ VanGui::TransitionToTokenSet(t, duration_seconds);
 ---
 
 <sub>Built and maintained by [TsyVM](https://github.com/TsyVM) · [TeamVanilla](https://www.teamvanilla.org/)</sub>
-EOF
-echo "Done. Lines: $(wc -l < /home/claude/VanGUI_Functions_Guide.md)"
-Output
-
-Done. Lines: 1157
-Now update the ZIP with both th
