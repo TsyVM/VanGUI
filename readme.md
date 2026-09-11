@@ -5,7 +5,7 @@
 <p><em>Immediate-Mode GUI with an Opt-In, Qt-Flavored Application Layer — for C++23</em></p>
 
 <a href="#">
-<img src="https://readme-typing-svg.demolab.com/?lines=Dear+ImGui+core.+Qt-flavored+suite+on+top.;38+modules.+Every+one+zero-cost+when+off.;All+toggles+off+%3D+stock+Dear+ImGui.;.vss+stylesheets.+Live+theme+transitions.;Signals+and+slots.+No+moc.+No+codegen.;Dialogs+that+return+std%3A%3Aexpected.;A+command+palette+in+your+own+app.;Rebuild+every+frame.+No+widget+tree.&font=Fira%20Code&center=true&width=700&height=45&color=E4C694&vCenter=true&size=20&pause=1800"/>
+<img src="https://readme-typing-svg.demolab.com/?lines=Immediate-mode+core.+Qt-flavored+suite+on+top.;38+modules.+Every+one+zero-cost+when+off.;All+toggles+off+%3D+the+bare+core.;.vss+stylesheets.+Live+theme+transitions.;Signals+and+slots.+No+moc.+No+codegen.;Dialogs+that+return+std%3A%3Aexpected.;A+command+palette+in+your+own+app.;Rebuild+every+frame.+No+widget+tree.&font=Fira%20Code&center=true&width=700&height=45&color=E4C694&vCenter=true&size=20&pause=1800"/>
 </a>
 
 <br/>
@@ -24,7 +24,7 @@
 
 <br/>
 
-[![Dear ImGui](https://img.shields.io/badge/Core-Dear%20ImGui-E4C694?style=flat-square&labelColor=3F2B16)](https://github.com/ocornut/imgui)
+[![Immediate mode](https://img.shields.io/badge/Paradigm-immediate%20mode-E4C694?style=flat-square&labelColor=3F2B16)](#-features-at-a-glance)
 [![Modules](https://img.shields.io/badge/Suite-38%20modules-E4C694?style=flat-square&labelColor=3F2B16)](#-the-suite)
 [![Backends](https://img.shields.io/badge/Backends-21%20%C2%B7%20shipped%20as%20source-E4C694?style=flat-square&labelColor=3F2B16)](#-backends)
 [![Theming](https://img.shields.io/badge/Theming-.vss%20stylesheets-E4C694?style=flat-square&labelColor=3F2B16)](#-the-suite)
@@ -35,13 +35,11 @@
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=rect&color=0:3F2B16,50:E4C694,100:3F2B16&height=3"/>
 
-VanGUI is a fork of Dear ImGui that keeps the immediate-mode core — rebuild every frame, no retained widget tree, optimized vertex output, render anywhere in your pipeline — and layers on a **strictly opt-in enhancement suite** that brings a finished application closer to Qt: animation and transitions, declarative theming (`.vss`), standard dialogs, signals and slots, model/view adapters, loading states, an actions registry, a command palette, and a fluent `van::` facade.
+VanGUI is a C++23 immediate-mode GUI library. The interface is rebuilt every frame, there is no retained widget tree to keep in sync, the vertex output is optimized, and it draws inside whatever pipeline you already have. On top of that core sits a **strictly opt-in enhancement suite** that brings a finished application closer to Qt: animation and transitions, declarative theming (`.vss`), standard dialogs, signals and slots, model/view adapters, loading states, an actions registry, a command palette, and a fluent `van::` facade.
 
-The defining constraint: **every enhancement is zero-cost when unused.** Each module is its own build switch; leave one off and its source compiles to nothing, and with all toggles off the core is Dear ImGui with its symbols renamed. This SDK ships the *everything-enabled* build.
+The defining constraint: **every enhancement is zero-cost when unused.** Each module is its own build switch; leave one off and its source compiles to nothing, and leave them all off and what remains is the bare immediate-mode core. This SDK ships the *everything-enabled* build.
 
 VanGUI is distributed as **precompiled static libraries with public API headers**. Drop the headers and the matching `.lib` files into your project and link — no build system integration or source compilation required, apart from the one backend pair you choose.
-
-> **Provenance.** VanGUI's core and backends derive from Dear ImGui (© Omar Cornut, MIT), symbol-renamed `ImGui→VanGui`. The enhancement suite and the `van::` facade are original work by TeamVanilla. See [`NOTICE`](NOTICE).
 
 <div align="center">
 
@@ -60,8 +58,8 @@ VanGUI is distributed as **precompiled static libraries with public API headers*
 ## ✨ Features at a Glance
 
 **The core**
-- **Immediate mode, unchanged** — the UI is rebuilt every frame, there is no widget tree to keep in sync, and it renders inside whatever pipeline you already have
-- **Dear ImGui compatible** — everything you know about ImGui still applies; symbols are renamed `ImGui→VanGui`, `Im*→Van*`
+- **Immediate mode** — the interface is rebuilt every frame, so there is no widget tree, no synchronisation step, and no state to leak between your data and the UI
+- **Renderer agnostic** — VanGUI produces a `VanDrawData` vertex stream and never owns the device, the window, or the event loop; hand the stream to whichever backend you compiled
 - **Zero-cost when off** — every enhancement is a build switch, and an unused module compiles to nothing
 - **No third-party runtime dependencies** in the prebuilt libraries
 
@@ -90,21 +88,21 @@ VanGUI is distributed as **precompiled static libraries with public API headers*
 
 ## 🧭 Where VanGUI Sits
 
-| | Dear ImGui | Qt Widgets | **VanGUI** |
-|---|---|---|---|
-| **Paradigm** | Immediate mode | Retained mode | **Immediate mode** |
-| **Footprint** | Tiny | Very large (100s of MB) | **Tiny core + à-la-carte extras** |
-| **Renderer integration** | Bring-your-own, any pipeline | Owns the event loop | **Bring-your-own, any pipeline** |
-| **Animation system** | ✗ | ✓ | **✓ (opt-in `vangui_anim`)** |
-| **Declarative theming** | ✗ | QSS | **✓ `.vss` stylesheet** |
-| **Signals / slots** | ✗ | ✓ (moc) | **✓ header-only, RAII, no codegen** |
-| **Model / view** | ✗ | ✓ | **✓ virtualized adapters** |
-| **Standard dialogs** | ✗ | ✓ | **✓ `std::expected` results** |
-| **Error handling** | assert / bool | exceptions | **`std::expected` on the extras** |
-| **Build dependency** | none | qmake/CMake + moc | **none (CMake optional)** |
-| **License** | MIT | LGPL / commercial | **MIT** |
+| | Qt Widgets | **VanGUI** |
+|---|---|---|
+| **Paradigm** | Retained mode | **Immediate mode** |
+| **Footprint** | Very large (100s of MB) | **Tiny core + à-la-carte extras** |
+| **Renderer integration** | Owns the event loop | **Bring-your-own, any pipeline** |
+| **Animation system** | ✓ | **✓ (opt-in `vangui_anim`)** |
+| **Declarative theming** | QSS | **✓ `.vss` stylesheet** |
+| **Signals / slots** | ✓ (moc) | **✓ header-only, RAII, no codegen** |
+| **Model / view** | ✓ | **✓ virtualized adapters** |
+| **Standard dialogs** | ✓ | **✓ `std::expected` results** |
+| **Error handling** | exceptions | **`std::expected` on the extras** |
+| **Build dependency** | qmake/CMake + moc | **none (CMake optional)** |
+| **License** | LGPL / commercial | **MIT** |
 
-The niche: *the ImGui you already know, that scales up to a real desktop app when you need it, and compiles away to stock ImGui when you don't.*
+The niche: *an immediate-mode toolkit that scales up to a real desktop application when you need it, and compiles back down to a tiny core when you don't.*
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=rect&color=0:3F2B16,50:E4C694,100:3F2B16&height=3"/>
 
@@ -192,7 +190,7 @@ if (auto w = window("Settings", { .size = {420, 300}, .p_open = &open })) {
 }
 ```
 
-Or drive the core directly — it is Dear ImGui, renamed:
+Or drive the core directly:
 
 ```cpp
 #include <vangui/vangui.h>
@@ -214,7 +212,7 @@ const VanDrawData* dd = VanGui::GetDrawData();   // hand this to your renderer b
 
 ## ⚠️ The Frozen-Config Contract
 
-Dear ImGui couples ABI to compile-time configuration: options in `vanconfig.h` (`VANGUI_USE_WCHAR32`, `VANGUI_USE_BGRA_PACKED_COLOR`, the disable-flags, `VANGUI_DEFINE_MATH_OPERATORS`) change the layout of structs shared through the *public* header. The prebuilt libraries here were compiled against the `vanconfig.h` shipped in this package.
+VanGUI couples ABI to compile-time configuration: options in `vanconfig.h` (`VANGUI_USE_WCHAR32`, `VANGUI_USE_BGRA_PACKED_COLOR`, the disable-flags, `VANGUI_DEFINE_MATH_OPERATORS`) change the layout of structs shared through the *public* header. The prebuilt libraries here were compiled against the `vanconfig.h` shipped in this package.
 
 **Do not edit layout-affecting `vanconfig.h` defines when linking these libraries.** The result is silent ABI corruption, not a link error. If you need a different core configuration, [build from source](#-build-from-source).
 
@@ -323,7 +321,7 @@ They ship as source deliberately: a prebuilt backend would pin your GLFW, SDL or
 
 ## ❌ Error Handling
 
-The immediate-mode core keeps Dear ImGui's conventions: asserts and booleans. The enhancement layer reports failure by value, with `std::expected`, so a dialog that the user cancelled is not an exception:
+The immediate-mode core reports problems the way the core always has: asserts and booleans. The enhancement layer reports failure by value, with `std::expected`, so a dialog the user cancelled is not an exception:
 
 ```cpp
 auto path = van::open_file_dialog({ .title = "Open", .filter = "*.png" });
@@ -343,7 +341,7 @@ No exceptions are thrown across the library boundary.
 ```
 VanGUISDK/
 ├── include/vangui/
-│   ├── vangui.h                    ← the immediate-mode core (Dear ImGui, renamed)
+│   ├── vangui.h                    ← the immediate-mode core
 │   ├── vanconfig.h                 ← frozen: do not edit layout-affecting defines
 │   ├── van.h                       ← fluent facade, namespace van::
 │   ├── van_kit.h                   ← amalgamated header-only utilities
@@ -398,11 +396,11 @@ See [`lib/README.md`](lib/README.md) for the library matrix and the CRT options.
 
 Full API reference, every pillar, and the enable-macro each one rides on: **[VanGUI Suite Guide](VanGUI_Suite_Guide.md)**.
 
+Third-party and provenance notices for the bundled components are in [`NOTICE`](NOTICE).
+
 <div align="center">
 
 <sub>Built and maintained by <a href="https://github.com/TsyVM">TsyVM</a> · <a href="https://www.teamvanilla.org/">TeamVanilla</a></sub>
-
-<sub>Core and backends derive from <a href="https://github.com/ocornut/imgui">Dear ImGui</a> © Omar Cornut, MIT</sub>
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:E4C694,100:3F2B16&height=80&section=footer"/>
 
