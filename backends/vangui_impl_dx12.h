@@ -29,8 +29,7 @@ struct D3D12_GPU_DESCRIPTOR_HANDLE;
 // off by default.
 //
 // <dxgiformat.h> is the enum and nothing else: no COM, no d3d12.h, a few
-// hundred lines of enumerators. Including it costs nothing and is what the
-// upstream Dear ImGui backend does.
+// hundred lines of enumerators. Including it costs nothing.
 #include <dxgiformat.h>
 
 // ---------------------------------------------------------------------------
@@ -52,7 +51,7 @@ struct D3D12_GPU_DESCRIPTOR_HANDLE;
 //
 // So a caller that wants its own textures supplies two callbacks and the
 // backend allocates a descriptor per texture, the way a D3D12 renderer
-// normally would. This mirrors what upstream Dear ImGui 1.92 does.
+// normally would.
 struct VanGui_ImplDX12_InitInfo
 {
     ID3D12Device*           Device              = nullptr;

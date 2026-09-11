@@ -4,7 +4,7 @@ The complete public surface of the VanGUI SDK: the immediate-mode core, the
 fluent `van::` facade, and every enhancement pillar with the enable-macro it
 rides on. Header paths are relative to `include/vangui/`.
 
-- **Core** is the Dear ImGui API, renamed `ImGui→VanGui`, in namespace `VanGui`.
+- **Core** is the immediate-mode API, in namespace `VanGui`.
 - **Suite** functions live in `VanGui::` (and some in `van::`), and are declared
   only when their `VANGUI_ENABLE_*` macro is defined. In this SDK the whole set
   is defined for you by `VanGUI::suite` / `VanGUISDKConfig.cmake` — see the
@@ -20,7 +20,7 @@ rides on. Header paths are relative to `include/vangui/`.
 #include <vangui/vangui.h>       // everything in namespace VanGui::
 ```
 
-Identical in shape to Dear ImGui 1.92.x: `Begin/End`, `Button`, `SliderFloat`,
+The immediate-mode surface: `Begin/End`, `Button`, `SliderFloat`,
 `InputText`, `BeginTable`, docking, draw lists, fonts, `ShowDemoWindow()`, etc.
 Types are `VanVec2`, `VanVec4`, `VanColor`, `VanGuiID`, `VanGuiWindowFlags`, …
 Compile-time configuration is in `vanconfig.h` (frozen for the prebuilt libs).
